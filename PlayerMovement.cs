@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Refrences")]
     public CharacterController controller;
     public Transform groundCheck;
-    public LayerMask groundMask, enemyAreaMask;
+    public LayerMask groundMask;
 
     [Header("Player Options")]
     public float moveSpeed = 12f;
@@ -82,17 +82,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = (transform.right * x + transform.forward * z).normalized;
         return move;
-    }
-
-    public Vector3 EnemyReachPosition()
-    {
-        Vector3 playerPos = transform.position;
-        if(Physics.Raycast(transform.position, Vector3.up, out RaycastHit hit,enemyAreaMask))
-        {
-            playerPos = new Vector3(transform.position.x, hit.point.y - 5, transform.position.z);
-        }
-
-        return playerPos;
     }
 
     public Vector3 GetPlayerVelocity()
